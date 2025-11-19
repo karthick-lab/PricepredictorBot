@@ -89,8 +89,11 @@ st.set_page_config(page_title="Gold Price Predictor", layout="wide")
 st.title("📈 Gold Price Predictor")
 st.markdown("Select a date range (up to 5 years) to view predicted gold prices for 24K, 22K, and 18K.")
 
-start_date = st.date_input("Start Date", value=datetime.today())
-end_date = st.date_input("End Date", value=datetime(2025, 1, 31))
+from datetime import datetime, timedelta
+import streamlit as st
+
+start_date = st.date_input("Start Date", value=datetime.today().date() + timedelta(days=1))
+end_date = st.date_input("End Date", value=start_date + timedelta(days=7))
 
 if st.button("Submit"):
     if start_date >= end_date:
