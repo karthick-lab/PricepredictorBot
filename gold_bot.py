@@ -1,3 +1,7 @@
+import json
+import os
+import sys
+
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -6,6 +10,13 @@ import re
 import requests
 from io import BytesIO
 from datetime import datetime
+
+
+exe_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
+config_file = os.path.join(exe_dir, "config.json")
+
+with open(config_file, "r") as f:
+    CONFIG = json.load(f)
 
 # Load Excel from GitHub
 @st.cache_data
